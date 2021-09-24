@@ -1,0 +1,15 @@
+git add burger/burguer/templates/burguer_detail.html &&
+git add burger/burguer/views.py &&
+git add burger/offer/models.py &&
+git add burger/people/models.py &&
+git add burger/people/urls.py &&
+git add burger/people/views.py &&
+git add burger/settings.py &&
+git add burger/static/burger/theme/Burge/stylesheet/bootstrap_view.css &&
+git add burger/templates/base.html &&
+git add burger/templates/index.html &&
+git add burger/urls.py &&
+git add burger/views.py &&
+git add db.sqlite3 &&
+git add requirements.txt &&
+git add staticfiles/burger/theme/Burge/stylesheet/bootstrap_view.css

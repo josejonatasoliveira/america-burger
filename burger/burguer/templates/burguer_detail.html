@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block middle %}
+<div id="product-product" class="container">
+
+    <div class="row">
+       <div id="content" class="col-sm-12 productpage">
+        <!-- Product detail -->
+          <div class="row">
+                <div class="col-sm-5 product-left">
+                    <div class="product-info">
+                    <div class="left product-image thumbnails">
+                        <!-- Codezeel Cloud-Zoom Image Effect Start -->
+                        <div class="image">
+                            <a class="thumbnail" href="/uploaded/{{ product.image_file }}" title="{{ product.name }}">
+                                <img id="tmzoom" src="/uploaded/{{ product.image_file }}" data-zoom-image="/uploaded/{{ product.image_file }}" title="{{ product.name }}" alt="{{ product.name }}" />
+                            </a>
+                        </div>
+                        <!-- <div class="additional-carousel">
+                            <div class="customNavigation">
+                                <a class="fa prev fa-arrow-left">&nbsp;</a>
+                                <a class="fa next fa-arrow-right">&nbsp;</a>
+                            </div>
+                            <div id="additional-carousel" class="image-additional product-carousel">
+                                {% for photo in photo_list %}
+                                <div class="slider-item">
+                                    <div class="product-block">
+                                        <a href="/uploaded/{{ photo.image_file }}" title="{{ product.name }}" class="elevatezoom-gallery" data-image="/uploaded/{{ photo.image_file }}" data-zoom-image="/uploaded/{{ photo.image_file }}">
+                                            <img src="/uploaded/{{ photo.image_file }}" width="95" height="109" title="{{ product.name }}" alt="{{ product.name }}" />
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <span class="additional_default_width" style="display:none; visibility:hidden"></span>
+                        </div> -->
+                        <!-- Codezeel Cloud-Zoom Image Effect End-->
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm-7 product-right">
+                    <h3 class="product-title">{{ product.name }}</h3>
+                        <div class="rating-wrapper">
+                            <span class="fa fa-stack">
+                                <i class="fa fa-star-o fa-stack-1x"></i>
+                            </span>                            
+                            <span class="fa fa-stack">
+                                <i class="fa fa-star-o fa-stack-1x"></i>
+                            </span>                            
+                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i>
+                            </span>                            
+                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i>
+                            </span>                            
+                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i>
+                            </span>              
+                            <a href="#" class="review-count" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0 avaliação</a>  
+                            <a href="#" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;" class="write-review">
+                                <i class="fa fa-pencil"></i>Avaliar
+                            </a>
+                        </div>
+                    <!-- <ul class="list-unstyled attr">
+                        <li>
+                            <span class="desc">Brand::</span>
+                            <a href="index5b2d.html?route=product/manufacturer/info&amp;manufacturer_id=6">Palm</a>
+                        </li>
+                        <li>
+                            <span class="desc">Código do Produto: </span> {{ product.code }}
+                        </li>
+                        <li>
+                            <span class="desc">Availability: </span> In Stock
+                        </li>
+                    </ul> -->
+                    <div id="product">
+                        <h3 class="product-option">Itens Adicionais</h3>
+                        {% if product.burger_type == 1 %}
+                        <div class="form-group required">
+                            <label class="control-label" for="input-option224">Batata</label>
+                            <select name="option[224]" id="input-option224" class="form-control">
+                                <option value=""> --- Selecionar --- </option>
+                                <option value="3.5">Pequena
+                                    (+R$ 3.50)
+                                </option>
+                                <option value="4.5">Grande
+                                    (+ R$ 4.50)
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group required">
+                            <label class="control-label" for="input-option224">Refrigerante</label>
+                            <select name="option[224]" id="input-option224" class="form-control">
+                                <option value=""> --- Selecionar --- </option>
+                                <option value="3.5">Coca-cola(350ml)
+                                    (+R$ 3.50)
+                                </option>
+                                <option value="3.5">Guarana(350ml)
+                                    (+ R$ 3.50)
+                                </option>
+                                <option value="6">Coca-cola(1L)
+                                    (+ R$ 6.00)
+                                </option>
+                            </select>
+                        </div>
+                        {% else %}
+                        <div class="form-group required">
+                            <label class="control-label" for="input-option224">Batata</label>
+                                Batata Pequena (100g)
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label" for="input-option224">Refrigerante</label>
+                                Coca-cola ou Guaraná (350ml)
+                        </div>
+                        {% endif %}
+
+                        <div class="price-cartbox">
+                            <ul class="list-unstyled price">
+                                {% if product.discount > 0 %}
+                                <li>
+                                    <span class="old-price" style="text-decoration: line-through;">R$ {{ product.price }}</span>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <h3 class="product-price">R$ {{ product.get_total_value }}</h3>
+                                </li>
+                                <!-- <li class="price-tax">Ex Tax: $112.00</li> -->
+                            </ul>
+                            <div class="form-group qty">
+                                <form id="addtocart">
+                                    <label class="control-label" for="input-quantity">Quantidade</label>
+                                    <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
+                                    <button type="submit" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">Adicionar ao carrinho</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- AddThis Button BEGIN -->
+                        <div class="addthis_toolbox addthis_default_style" data-url="indexfac8.html?route=product/product&amp;product_id=35">
+                            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> 
+                            <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a>
+                        </div>
+                        <script type="text/javascript" src="../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script> 
+                    <!-- AddThis Button END --> 
+                    </div>
+                </div>
+                <!-- product page tab code start-->
+                <div id="tabs_info" class="product-tab col-sm-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab-description" data-toggle="tab">Descrição</a>
+                        </li>
+                        <li>
+                            <a href="#tab-review" data-toggle="tab">Avaliações (0)</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-description">
+                            {{ product.description }}
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="tab-pane" id="tab-review">
+                            <form class="form-horizontal" id="form-review">
+                                <div id="review"></div>
+                                <h3>Avaliar</h3>
+                                <div class="form-group required">
+                                    <div class="col-sm-12">
+                                    <label class="control-label" for="input-review">Comentário</label>
+                                    <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <div class="col-sm-12">
+                                    <label class="control-label">Avaliar</label>
+                                    &nbsp;&nbsp;&nbsp; Ruim&nbsp;
+                                    <input type="radio" name="rating" value="1" />
+                                    &nbsp;
+                                    <input type="radio" name="rating" value="2" />
+                                    &nbsp;
+                                    <input type="radio" name="rating" value="3" />
+                                    &nbsp;
+                                    <input type="radio" name="rating" value="4" />
+                                    &nbsp;
+                                    <input type="radio" name="rating" value="5" />
+                                    &nbsp;Bom
+                                    </div>
+                                </div>
+                                <div class="buttons clearfix">
+                                    <div class="pull-right">
+                                    <button type="button" id="button-review" data-loading-text="Loading..." class="btn btn-primary">Avaliar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {% else %}
+                        <div class="tab-pane" id="tab-review">
+                            Para avaliar um de nossos burgers você deve estar logado! 
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- End Product Detail -->
+       </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($(window).width() > 767) {
+            $("#tmzoom").elevateZoom({
+                gallery:'additional-carousel',			 
+                zoomType : "inner", 
+                cursor: "crosshair" 
+            });
+            var z_index = 0;
+                                     
+            $(document).on('click', '.thumbnail', function () {
+                $('.thumbnails').magnificPopup('open', z_index);
+                return false;
+            });
+    
+            $('.additional-carousel a').click(function() {
+                var smallImage = $(this).attr('data-image');
+                var largeImage = $(this).attr('data-zoom-image');
+                var ez =   $('#tmzoom').data('elevateZoom');	
+                $('.thumbnail').attr('href', largeImage);  
+                ez.swaptheimage(smallImage, largeImage); 
+                z_index = $(this).index('#additional-carousel a');
+                return false;
+            });
+                
+        }else{
+            $(document).on('click', '.thumbnail', function () {
+            $('.thumbnails').magnificPopup('open', 0);
+            return false;
+            });
+        }
+    });
+    $(document).ready(function() {     
+        $('.thumbnails').magnificPopup({
+            delegate: 'a.elevatezoom-gallery',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-with-zoom',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title');
+                }
+            }
+        });
+    });
+    $("#addtocart").on('submit', (e) => {
+        e.preventDefault();
+        $.ajax({
+            url: "{% url 'cart:cart_add' product.hash_id %}",
+            data:{ 'quantity': e.target.quantity.value},
+            method: 'POST',
+            beforeSend: (xhr) => {
+                xhr.setRequestHeader('X-CSRFTOKEN', "{{ csrf_token }}");
+            },
+            complete: (data) => {
+                if(data.status == 200){
+                    
+                }
+            }
+        })
+    })
+</script>
+{% endblock middle %}

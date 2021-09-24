@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block middle %}
+<style>
+    .raffle-time {
+        margin-top: -350px;
+        background-color: black;
+        padding: 5px;
+        position: absolute;
+    }
+    .raffle-time i {
+        color: rgb(255, 251, 251);
+        font-size: 24px;
+    }
+    .raffle-time span {
+        padding: 5px;
+        font-size: 32px;
+        color: rgb(255, 255, 255);
+    }
+</style>
+<div class="container">
+    <div class="wrap-breadcrumb parallax-breadcrumb">
+        <div class="container"></div>
+    </div>
+
+    <div class="content-top">
+        <div class="home-container">
+        <div class="main-slider">
+            <div id="spinner"></div>
+            <div class="swiper-viewport">
+                <div id="slideshow0" class="swiper-container">
+                    <div class="swiper-wrapper" id="raffle">
+                        <div class="swiper-slide text-center">
+                            <a href="#">
+                                <img src="/uploaded/{{ raffle.image_file }}" alt="Main Banner1" class="img-responsive" />
+                                <div class="timer raffle-time text-center"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination slideshow0"></div>
+            </div>
+        </div>
+
+            <script type="text/javascript">
+
+                $(window).load(function() {		
+                    $("#spinner").fadeOut("slow");
+                });
+
+                $("#raffle").on('click', ()=>{
+                    swal({
+                        title: "Digite o código do seu cupom",
+                        type: "input",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: true,
+                        inputPlaceholder: "Código do cupom"
+                    }, function (inputValue) {
+
+                        if (inputValue === false) return false;
+                        if (inputValue === "") {
+                            swal.showInputError("Campo obrigatório!");
+                            return false
+                        }
+                        $.ajax({
+                            url: "{% url 'ticket' %}",
+                            method: 'POST',
+                            data:{'code':inputValue},
+                            beforeSend: (xhr) => {
+                                xhr.setRequestHeader('X-CSRFTOKEN', "{{ csrf_token }}");
+                            },
+                            complete: (data) => {
+                                if(data.status == 200){
+                                    swal({
+                                        title: "Parabens!",
+                                        text: "Agora você esta participando de nosso sorteio",
+                                        type: "success",
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    })
+                                }
+                                if(data.status == 404){
+                                    swal({
+                                        title: "Erro!",
+                                        text: "O código informado já foi usado ou não é válido",
+                                        type: "error",
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    })
+                                }
+                            }
+                        });
+                    });
+
+                });
+                new TimezZ('.raffle-time', {
+                    date: '{{ raffle.get_date }}',
+                    daysName: 'd',
+                    hoursName: 'h',
+                    minutesName: 'm',
+                    numberTag: 'span',
+                    letterTag: 'i',
+                    stop: false, // stop the countdown timer?
+                });
+
+            </script>
+        </div>
+    </div>
+
+    <div id="czbannercmsblock" class="block czbanners" style="margin-top: 30px;">
+        <div class="cmsbanners">
+            {% for offer in  offers_banner %}
+            <div class="one-half cmsbanner-part1">
+                <div class="cmsbanner-inner">
+                    <div class="cmsbanner cmsbanner1">
+                        <a href="#" class="banner-anchor"><img src="/uploaded/{{ offer.image_file }}" alt="cms-banner1" class="banner-image1"></a>
+                        <div class="cmsbanner-text">
+                        <div class="offer-title">20% Save</div>
+                        <div class="main-title">{{ offer.title }}</div>
+                        <div class="shopnow"><a class="shop-now" href="#">Comprar</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+           
+        </div>
+    </div>
+</div>
+{% endblock middle %}

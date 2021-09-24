@@ -1,0 +1,46 @@
+{% extends "base_options.html" %}
+{% load staticfiles %}
+{% load i18n avatar_tags %}
+
+{% block fragment %}
+{% if not user.is_authenticated %}
+<div id="content" class="col-sm-9">
+
+   <div class="col-sm-6">
+      <div class="well">
+         <h3>Logar no sistema</h3>
+         <form action="{% url 'account_login' %}?next=/" method="POST">
+            {% csrf_token %}
+            <div class="alert alert-danger" role="alert">
+               E-mail ainda não confirmado! Não foi possível realizar o login.
+            </div>
+            <div class="form-group">
+               <label class="control-label" for="id_username">{% trans 'E-mail' %}</label>
+               <input type="text" name="login" value="" placeholder="Endereço de E-mail" id="id_username" class="form-control" />
+            </div>
+            <div class="form-group">
+               <label class="control-label" for="id_password">Senha</label>
+               <input type="password" name="password" value="" placeholder="Senha" id="id_password" class="form-control" />
+               <a href="{% url 'reset' %}">Esqueci a senha</a>
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary" />
+            <input type="hidden" name="redirect" value="https://demo.codezeel.com/opencart/OPC07/OPC070174/index.php?route=account/transaction" />
+         </form>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-sm-6">
+         <div class="well">
+            <h3>Novo por aqui?</h3>
+            <p><strong>Registre uma conta</strong></p>
+            <p>Ao criar uma conta, você poderá comprar mais rapidamente, ficar atualizado sobre o status de um pedido e acompanhar os pedidos feitos anteriormente.
+               Poderá também desfrutar de futuras promoções e descontos.
+            </p>
+            <a href="{% url 'register' %}" class="btn btn-primary">Resgistrar</a>
+         </div>
+      </div>
+   </div>
+</div>
+{% endif %}
+{% endblock fragment %}

@@ -1,0 +1,428 @@
+<!DOCTYPE html> {% load staticfiles %} {% load i18n avatar_tags %}
+<html class="wide wow-animation desktop landscape rd-navbar-static-linked" lang="en">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    {% block extra_head %}
+    <script src="{% static 'burger/javascript/jquery/jquery-2.1.1.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'burger/javascript/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <link href="{% static 'burger/javascript/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="../../../../fonts.googleapis.com/css0f7c.css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="{% static 'burger/theme/Burge/stylesheet/stylesheet.css' %}" rel="stylesheet" />
+    <!-- Codezeel - Start -->
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/javascript/jquery/magnific/magnific-popup.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/theme/Burge/stylesheet/codezeel/carousel.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/theme/Burge/stylesheet/codezeel/custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/theme/Burge/stylesheet/codezeel/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/theme/Burge/stylesheet/codezeel/lightbox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/theme/Burge/stylesheet/codezeel/animate.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/javascript/sweet-alert/sweetalert.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'burger/javascript/sweet-alert/sweetalert.css' %}" />
+
+    <link href="style.html" type="text/css" rel="style.rel" media="style.media" />
+    <link href="style.html" type="text/css" rel="style.rel" media="style.media" />
+    <link href="{% static 'burger/javascript/jquery/swiper/css/swiper.min.css' %}" type="text/css" rel="stylesheet" media="screen" />
+    <link href="{% static 'burger/javascript/jquery/swiper/css/opencart.css' %}" type="text/css" rel="stylesheet" media="screen" />
+    <script src="{% static 'burger/javascript/jquery/swiper/js/swiper.jquery.js' %}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/maps/swiper.jquery.min.js.map" type="text/javascript"></script>
+    <link href="{% static '/burger/image/catalog/burger.png' %}" rel="icon" />
+    <script type="text/javascript" src="{% static 'burger/javascript/websocketbridge.js' %}"></script>
+
+    <!-- Codezeel - Start -->
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/custom.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/jstree.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/codezeel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/jquery.custom.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/jquery.formalize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/lightbox/lightbox-2.6.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/tabs.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/jquery.elevatezoom.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/bootstrap-notify.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/doubletaptogo.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/parallax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/codezeel/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/jquery/magnific/jquery.magnific-popup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/jquery.countdown.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/jquery/mask/jquery.mask.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/jquery/mask/mask.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/sweet-alert/sweetalert.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/sweet-alert/sweetalert.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/timezz/timezz.js' %}"></script>
+    <script type="text/javascript" src="{% static 'burger/javascript/timezz/timezz.min.js' %}"></script>
+    <!-- Codezeel - End -->
+    <script src="{% static 'burger/javascript/common.js' %}" type="text/javascript"></script>
+    {% endblock extra_head %}
+
+    <title>América Burger</title>
+</head>
+
+{% block body %}
+<body class="common-home layout-1">
+    <section class="page-container container">
+        {% block header %}
+        <nav id="top"></nav>
+        <header>
+            <div class="header-container">
+                <div class="row">
+                    <div class="header-main">
+                        <div class="header-top">
+                            <div class="header-logo">
+                                <div id="logo">
+                                    <a href="{% url 'home' %}"><img src="{% static '/burger/image/catalog/logo.png' %}" title="América Burger" alt="América Burger" class="img-responsive" /></a>
+                                </div>
+                            </div>
+                            
+                            <div id="czheadercmsblock" class="header-cms-block">
+                                <div class="header-cms">
+                                    <div class="headercms-title"><i class="fa fa-whatsapp fa-3x"></i>{% trans 'WhatsApp' %}</div>
+                                    <div class="headercms-subtitle">+55 12 97836797</div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown myaccount">
+                                <a href="indexe223.html?route=account/account" title="Your Account" class="dropdown-toggle" data-toggle="dropdown">
+                        {% if user.is_authenticated %}
+                        <span class="title">
+                            {% with full_name=user.first_name|add:' '|add:user.last_name %}
+                                {% if full_name.strip %}
+                                    {{ full_name | truncatechars:20 }}
+                                {% else %}
+                                    {{ user.username | truncatechars:20 }}
+                                {% endif %}
+                            {% endwith %}
+                        </span>
+                        <span class="sub-title">{% trans 'Opções' %}</span>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                    <li><a href="{% url 'profile_detail' username=user.username %}" id="wishlist-total">{% trans 'Minha Conta' %}</a></li>
+                                    <li><a href="#" title="Shopping Cart">{% trans 'Meu Carrinho' %}</a></li>
+                                    <li><a href="index630e.html?route=checkout/checkout" title="Checkout">{% trans 'Finalizar compra' %}</a></li>
+                                    {% if user.is_superuser %}
+                                    <li><a href="{{SITEURL}}/pt/admin" title="Admin">{% trans 'Admin' %}</a></li>
+                                    {% endif %}
+                                    <li><a onclick="document.getElementById('sub_logout').submit();" ; type="submit">{% trans 'Sair' %}</a></li>
+                                </ul>
+                                {% else %}
+                                <span class="title">{% trans 'Minha Conta' %}</span>
+                                <span class="sub-title">{% trans 'Logar/Registrar' %}</span>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
+                                    <li><a href="{% url 'register' %}">{% trans 'Registrar' %}</a></li>
+                                    <li><a href="{% url 'login' %}">{% trans 'Login' %}</a></li>
+                                    <li><a href="indexe223.html?route=account/wishlist" id="wishlist-total" title="Wishlist (0)">Wishlist (0)</a></li>
+                                    <li><a href="#" title="Shopping Cart">{% trans 'Meu carrinho' %}</a></li>
+                                    <li><a href="index630e.html?route=checkout/checkout" title="Checkout">{% trans 'Finalizar compra' %}</a></li>
+                                </ul>
+                                {% endif %}
+
+                            </div>
+                            <div id="search" class="input-group">
+                                <span class="search_button"></span>
+                                <div class="search_toggle">
+                                    <div id="searchbox">
+                                        <input type="text" name="search" value="" placeholder="{% trans 'Pesquise por algum produto' %}" class="form-control input-lg" />
+                                        <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-lg">{% trans 'Pesquisar' %}<i class="fa fa-search"></i></button>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form role="form" action="{% url 'account_logout' %}" id="sub_logout" method="post">
+                            {% csrf_token %}
+                        </form>
+                        <div class="headertop-inner">
+                            <div class="header-cart">
+                                <div id="cart" class="btn-group btn-block">
+                                    <span class="cart_heading" data-toggle="dropdown">{% trans 'Minhas Compras' %}</span>
+                                    <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="btn btn-inverse btn-block btn-lg dropdown-toggle">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        {% with total_items=cart|length %}
+                                            <span id="cart-quantity">{{ total_items }}</span>
+                                        {% endwith %}
+                                    </button>
+                                    
+                                        {% with total_items=cart|length %}
+                                            {% if total_items > 0 %}
+                                                <ul class="dropdown-menu pull-right cart-menu" style="display: none;">
+                                                    <li>
+                                                        <table class="table table-striped">
+                                                            <tbody>
+                                                                {% for item in cart %}
+                                                                    {% with product=item.order %}
+                                                                    <tr>
+                                                                        <td class="text-center"> <a href="https://demo.codezeel.com/opencart/OPC07/OPC070174/index.php?route=product/product&amp;product_id=36"><img src="/uploaded/{{ product.image_file }}" alt="{{ product.name }}" width="85px" height="98px" title="{{ product.name }}"></a> </td>
+                                                                        <td class="text-left"><a href="https://demo.codezeel.com/opencart/OPC07/OPC070174/index.php?route=product/product&amp;product_id=36">{{ product.name }}</a>             </td>
+                                                                        <td class="text-right" style="display: block;float:left;">{{ item.quantity }} x</td>
+                                                                        <td class="text-right" style="display: block;float:left;">R$ {{ product.price }}</td>
+                                                                        <td class="text-center" style="display: block;float:left;"><a href="{% url 'cart:cart_remove' product.hash_id %}" type="button" title="Remover" class="btn btn-danger btn-xs">Remover</a></td>
+                                                                    </tr>
+                                                                    {% endwith %}
+                                                                {% endfor  %}
+                                                            </tbody>
+                                                        </table>
+                                                        </li>
+                                                        <li>
+                                                        <div>
+                                                            <table class="table table-bordered">
+                                                                <tbody>
+                                                                    <td class="text-right"><strong>Total</strong></td>
+                                                                    <td class="text-right" id="total-price">R$ {{ cart.get_total_price }}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </li>
+                                                    <p class="text-right button-container">
+                                                        <a href="https://demo.codezeel.com/opencart/OPC07/OPC070174/index.php?route=checkout/cart" class="addtocart btn btn-primary">
+                                                            <strong>Carrinho</strong>
+                                                        </a>
+                                                        <a href="https://demo.codezeel.com/opencart/OPC07/OPC070174/index.php?route=checkout/checkout" class="checkout btn btn-primary">
+                                                            <strong>Finalizar Compra</strong>
+                                                        </a>
+                                                    </p>
+                                                </ul>
+                                            {% else %}
+                                                <ul class="dropdown-menu pull-right cart-menu">
+                                                    <li>
+                                                        <p class="text-center">{% trans  'Seu carrinho esta vazio!' %}</p>
+                                                    </li>
+                                                </ul>
+                                            {% endif %}
+                                        {% endwith %}
+                                </div>
+                            </div>
+                            {% if user.is_superuser %}
+                            <div class="header-cart" style="z-index:1">
+                                <div id="cart" class="btn-group btn-block">
+                                    <a href="{% url 'home' %}" class="bell_heading">Pedidos</a>
+                                    <audio id="audioNotification" loop>
+                                        <source src="{% static 'burger/sounds/notification.mp3' %}" type="audio/mp3">
+                                    </audio>
+                                    <a href="{% url 'home' %}" type="button" class="btn btn-inverse btn-block btn-lg">
+                                        <i class="fa fa-bell"></i>
+                                        {% with total_items=cart|length %}
+                                            <span id="cart-quantity">{{ total_items }}</span>
+                                        {% endwith %}
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <nav class="nav-container" role="navigation">
+                                <div class="nav-inner">
+                                    <!-- ======= Menu Code START ========= -->
+                                    <!-- Opencart 3 level Category Menu-->
+                                    <div id="menu" class="main-menu">
+                                        <ul class="nav navbar-nav">
+                                            <li class="top_level"><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                                            <li class="top_level dropdown">
+                                                <a href="#">{% trans 'Menu' %}</a>
+                                                <div class="dropdown-menu megamenu column3">
+                                                    <div class="dropdown-inner">
+                                                        <ul class="list-unstyled childs_1">
+                                                            <li class="dropdown">
+                                                                <a href="#">Hamburguer</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="list-unstyled childs_1">
+                                                            <li class="dropdown">
+                                                                <a href="#">Porção/Refri</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="list-unstyled childs_1">
+                                                            <li class="dropdown">
+                                                                <a href="#">Combos Simples</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="list-unstyled childs_1">
+                                                            <li class="dropdown">
+                                                                <a href="#">Combos Duplo</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="top_level"><a href="{% url 'about' %}">{% trans 'Parcerias' %}</a></li>
+                                            <li class="top_level"><a href="{% url 'ticket' %}">{% trans 'Sorteios' %}</a></li>
+                                            <li class="top_level"><a href="{% url 'about' %}">{% trans 'Contato' %}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--  =============================================== Mobile menu start  =============================================  -->
+                                <div id="res-menu" class="main-menu nav-container1">
+                                    <div class="nav-responsive">
+                                        <div class="expandable"></div>
+                                    </div>
+                                    <ul class="main-navigation">
+                                        <li class="top_level dropdown">
+                                            <a href="#">Menu</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Hamburguer</a>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Porção/Refri</a>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Combos Simples</a>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Combos Duplo</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="top_level dropdown"><a href="{% url 'about' %}">Parcerias</a>
+                                        </li>
+                                        <li class="top_level dropdown"><a href="{% url 'ticket' %}">Sorteios</a>
+                                        </li>
+                                        <li class="top_level dropdown"><a href="{% url 'about' %}">Contato</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </header>
+        {% endblock header %}
+
+        {% block middle %}{% endblock middle %}
+
+        {% block footer %}
+        <footer>
+            <div id="footer" class="container">
+               <div class="row">
+                  <div class="footer-blocks">
+                     <div class="footerleft-block">
+                        <div class="col-sm-3 column footerleft">
+                           <div class="contact-block">
+                              <ul>
+                                 <li><i class="fa fa-map-marker"></i><span>América Burger<br>Paraibuna - SP<br>Brasil</span></li>
+                                 <li><i class="fa fa-phone"></i><span>(12) 99783-6797</span></li>
+                                 <li><i class="fa fa-envelope-o"></i><span>americaburgercontato@gmail.com</span></li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="col-sm-3 column">
+                           <h5>Informações</h5>
+                           <ul class="list-unstyled">
+                              <li><a href="index8816.html?route=information/information&amp;information_id=4">Sobre nós</a></li>
+                              <li><a href="index1766.html?route=information/information&amp;information_id=6">Informações de entrega</a></li>
+                              <li><a href="index1679.html?route=information/information&amp;information_id=3">Política de Privacidade</a></li>
+                           </ul>
+                        </div>
+                        <div class="col-sm-3 column">
+                           <h5>Minha Conta</h5>
+                           <ul class="list-unstyled">
+                              <li><a href="{% url 'profile_detail' username=user.username %}">Minha Conta</a></li>
+                              <li><a href="indexe223.html?route=account/order">Meus Cupons</a></li>
+                              <li><a href="indexe223.html?route=account/wishlist">Minhas Compras</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="bottom-footer" class="bottomfooter">
+               <div class="container">
+                  <div class="row">
+                     <div class="footerbottom">
+                        <script>
+                           function subscribe()
+                           {
+                               var emailpattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                               var email = $('#txtemail').val();
+                               if(email != "")
+                               {
+                                   if(!emailpattern.test(email))
+                                   {
+                                       $('.text-danger').remove();
+                                       var str = '<span class="error">Invalid Email</span>';
+                                       $('#txtemail').after('<div class="text-danger">Invalid Email</div>');
+                           
+                                       return false;
+                                   }
+                                   else
+                                   {
+                                       $.ajax({
+                                           url: 'index.php?route=extension/module/newsletters/news',
+                                           type: 'post',
+                                           data: 'email=' + $('#txtemail').val(),
+                                           dataType: 'json',
+                                           
+                                                       
+                                           success: function(json) {
+                                           
+                                           $('.text-danger').remove();
+                                           $('#txtemail').after('<div class="text-danger">' + json.message + '</div>');
+                                           
+                                           }
+                                           
+                                       });
+                                       return false;
+                                   }
+                               }
+                               else
+                               {
+                                   $('.text-danger').remove();
+                                   $('#txtemail').after('<div class="text-danger">Email Is Require</div>');
+                                   $(email).focus();
+                           
+                                   return false;
+                               }
+                           }
+                        </script>
+                        
+                        <div id="payement_logo_block_left" class="payement_logo_block">
+                           <img src="{% static 'burger/image/catalog/visa.png' %}" alt="visa" width="31" height="20">
+                           <img src="{% static 'burger/image/catalog/master_card.png' %}" alt="master_card" width="31" height="20">
+                           <img src="{% static 'burger/image/catalog/hyper.png' %}" alt="hyper" width="31" height="20">
+                           <img src="{% static 'burger/image/catalog/hyper_card.png' %}" alt="hyper_card" width="31" height="20">
+                           <img src="{% static 'burger/image/catalog/american_express.png' %}" alt="american_express" width="31" height="20">
+                        </div>
+                     </div>
+                     <p id="powered" class="powered">América Burger &copy; 2020</p>
+                  </div>
+               </div>
+            </div>
+        </footer>
+        {% endblock footer %}
+
+        <script>
+            var sleep = (ms)=> {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+              const webSocketBridge = new channels.WebSocketBridge();
+              const nl = document.querySelector("#cart-quantity");
+              
+              webSocketBridge.connect('/ws/');
+              webSocketBridge.listen(function(action, stream) {
+                console.log("RESPONSE:", action);
+                $("#audioNotification")[0].play();
+                setTimeout(function(){
+                    $("#audioNotification")[0].pause();
+                }, 6000);
+
+              })
+              document.ws = webSocketBridge; /* for debugging */
+            })
+        </script>
+    </section>
+</body>
+{% endblock body %}
+</html>

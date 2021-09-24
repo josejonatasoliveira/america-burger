@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n avatar_tags %}
+
+{% block middle %}
+<div id="account-login" class="container">
+    <div class="row">
+       <aside id="column-left" class="col-sm-3 hidden-xs">
+          <div class="box">
+             <div class="box-heading">{% trans 'Minha Conta' %}</div>
+             <div class="list-group">
+                {% if not user.is_authenticated %}
+                <a href="index5502.html?route=account/register" class="list-group-item">{% trans 'Registrar' %}</a> 
+                <a href="{% url 'reset' %}" class="list-group-item">{% trans 'Esqueci a senha' %}</a>
+                {% else %}
+                <a href="{% url 'profile_detail' username=user.username %}" class="list-group-item">Minha Conta</a>
+                <a href="indexe223.html?route=account/reward" class="list-group-item">Meus Cupons</a> 
+                <a href="indexe223.html?route=account/return" class="list-group-item">Minhas compras</a> 
+                {% endif %}
+             </div>
+          </div>
+          <div class="box">
+             <div class="box-heading">Informações</div>
+             <div class="list-group">
+                <a class="list-group-item" href="index8816.html?route=information/information&amp;information_id=4">Sobre nós</a>
+                <a class="list-group-item" href="index1766.html?route=information/information&amp;information_id=6">Informações de Entrega</a>
+                <a class="list-group-item" href="index1679.html?route=information/information&amp;information_id=3">Política de Privacidade</a>
+             </div>
+          </div>
+       </aside>
+       {% block fragment %}
+       {% endblock fragment %}
+    </div>
+</div>
+{% endblock middle %}

@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block middle %}
+<div class="wrap-breadcrumb parallax-breadcrumb">
+    <div class="container"></div>
+</div>
+ <script> 
+    function quickbox(){
+     if ($(window).width() > 767) {
+            $('.quickview-button').magnificPopup({
+                type:'iframe',
+                delegate: 'a',
+                preloader: true,
+                tLoading: 'Loading image #%curr%...',
+            });
+     }	
+    }
+    jQuery(document).ready(function() {quickbox();});
+    jQuery(window).resize(function() {quickbox();});
+    
+    
+    $(document).ready(function(){
+        $('#service-carousel').owlCarousel({
+            items: 3,
+            singleItem: false,
+            navigation: false,
+            pagination: false,
+            autoPlay: true,
+            itemsDesktop : [1199,3], 
+            itemsDesktopSmall : [991,2],
+            itemsTablet : [650,1],
+            itemsMobile : [480,1] 
+        });
+    });
+    
+ </script>
+ <div class="content-top">
+    <div class="home-container">
+       <div class="main-slider">
+          <div id="spinner"></div>
+          <div class="swiper-viewport">
+             <div id="slideshow0" class="swiper-container">
+                <div class="swiper-wrapper">
+                   {% for offer in offers_slide%}
+                     <div class="swiper-slide text-center">
+                        <a href="#"><img src="/uploaded/{{ offer.image_file }}" alt="Main Banner1" class="img-responsive" /></a>
+                     </div>
+                   {% endfor %}
+                </div>
+             </div>
+             <div class="swiper-pagination slideshow0"></div>
+             <div class="swiper-pager">
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+             </div>
+          </div>
+       </div>
+       <script type="text/javascript"><!--
+            $('#slideshow0').swiper({
+                mode: 'horizontal',
+                slidesPerView: 1,
+                pagination: '.slideshow0',
+                paginationClickable: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 0,
+                autoplay: 5000,
+                autoplayDisableOnInteraction: true,
+                loop: true,
+                effect: 'fade'
+            });
+            -->
+       </script>
+       <script type="text/javascript">
+          // Can also be used with $(document).ready()
+          $(window).load(function() {		
+            $("#spinner").fadeOut("slow");
+          });	
+       </script>
+    </div>
+ </div>
+
+<div class="row home_row">
+
+   <div id="content" class="col-sm-12">
+      <div id="czsubbannercmsblock" class="block czsubbanners">
+         <div class="czsubbanner_container">
+            <div class="subbanners">
+               {% for offer in offers_banner%}
+                  <div class="one-third subbanner-part1">
+                     <div class="subbanner-inner">
+                        <div class="subbanner subbanner1"><a href="#" class="banner-anchor"><img src="/uploaded/{{ offer.image_file }}" alt="{{ offer.title }}" class="banner-image1"></a></div>
+                     </div>
+                  </div>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+
+      <!-- Products -->
+      <div class="hometab box">
+         <div class="tab-head">
+            <div class="hometab-heading box-heading">Menu</div>
+
+            <!-- Tab-20 -->
+            <div id="categorytab-20" class="tab-content">
+               <div class="box">
+                  <div class="box-content">
+
+                     <div class="customNavigation">
+                        <a class="fa prev fa-arrow-left">&nbsp;</a>
+                        <a class="fa next fa-arrow-right">&nbsp;</a>
+                     </div>
+
+                     <div class="box-product product-carousel" id="tabcategory0-carousel">
+                        {% for product in products %}
+                           {% if product.burger_type == 1 %}
+                              <div class="slider-item">
+                                 <div class="product-block product-thumb">
+                                    <div class="product-block-inner">
+                                       <div class="image">
+                                          <a href="{% url 'burguer_detail' id=product.hash_id %}">
+                                          <img src="uploaded/{{ product.image_file }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive"/>
+                                          <img class="img-responsive hover-image" src="uploaded/{{ product.image_file }}" title="{{ product.name }}" alt="{{ product.name }}"/>
+                                          </a> 
+                                          {% if product.discount > 0 %}  
+                                          <div class="percentsaving">{{ product.discount }}% Off</div>
+                                          {% endif %}
+                                       </div>
+                                       <div class="product-details">
+                                          <div class="caption">
+                                             <div class="rating">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                             </div>
+                                             <h4><a href="{% url 'burguer_detail' id=product.hash_id %}">{{ product.name }}</a></h4>
+                                             <p class="price">
+                                                {% if product.discount > 0 %}
+                                                <span class="price-new">R$ {{ product.get_total_value }}</span><span class="price-old">R$ {{ product.price }}</span>
+                                                {% else %}
+                                                <span class="price-new">R$ {{ product.get_total_value }}</span>
+                                                {% endif %}
+                                                <span class="price-tax">Ex Tax: $80.00</span>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           {% endif %}
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Tab-20 -->
+         </div>
+      </div>
+      <!-- End Products -->
+
+      <!-- Informations -->
+      <div id="czservicecmsblock">
+         <div class="service_container">
+            <div class="service-area">
+               <div class="service-fourth service1">
+                  <div class="service-icon icon1"></div>
+                  <div class="service-content">
+                     <div class="service-heading">100% de Satisfação</div>
+                  </div>
+               </div>
+               <div class="service-fourth service2">
+                  <div class="service-icon icon2"></div>
+                  <div class="service-content">
+                     <div class="service-heading">Economize com nossas promoções</div>
+                  </div>
+               </div>
+               <div class="service-fourth service3">
+                  <div class="service-icon icon3"></div>
+                  <div class="service-content">
+                     <div class="service-heading">Entrega rápida</div>
+                  </div>
+               </div>
+               <div class="service-fourth service4">
+                  <div class="service-icon icon4"></div>
+                  <div class="service-content">
+                     <div class="service-heading">Preço e Qualidade</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Information -->
+
+      <!-- Combo List -->
+      <div id="categorytab-26" class="tab-content">
+         <div class="box">
+            <div class="box-heading">Combos Simples</div>
+            <div class="box-content">
+               <div class="customNavigation">
+                  <a class="fa prev fa-arrow-left">&nbsp;</a>
+                  <a class="fa next fa-arrow-right">&nbsp;</a>
+               </div>
+
+               <div class="box-product product-carousel" id="tabcategory1-carousel">
+                  {% for product in products %}
+                     {% if product.burger_type == 2 %}
+                        <div class="slider-item">
+                           <div class="product-block product-thumb">
+                              <div class="product-block-inner">
+                                 <div class="image">
+                                    <a href="{% url 'burguer_detail' id=product.hash_id %}">
+                                    <img src="uploaded/{{ product.image_file }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive"/>
+                                    <img class="img-responsive hover-image" src="uploaded/{{ product.image_file }}" title="{{ product.name }}" alt="{{ product.name }}"/>
+                                    </a> 
+                                    {% if product.discount > 0 %}  
+                                    <div class="percentsaving">{{ product.discount }}% Off</div>
+                                    {% endif %}
+                                 </div>
+                                 <div class="product-details">
+                                    <div class="caption">
+                                       <div class="rating">
+                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                       </div>
+                                       <h4><a href="{% url 'burguer_detail' id=product.hash_id %}">{{ product.name }}</a></h4>
+                                       <p class="price">
+                                          {% if product.discount > 0 %}
+                                          <span class="price-new">R$ {{ product.get_total_value }}</span><span class="price-old">R$ {{ product.price }}</span>
+                                          {% else %}
+                                          <span class="price-new">R$ {{ product.get_total_value }}</span>
+                                          {% endif %}
+                                          <span class="price-tax">Ex Tax: $80.00</span>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     {% endif %}
+                  {% endfor %}
+               </div>
+
+
+            </div>
+         </div>
+         <span class="tabcategory1_default_width" style="display:none; visibility:hidden"></span> 
+      </div>
+      <!-- Combo List -->
+   </div>
+
+</div>
+
+{% endblock middle %}

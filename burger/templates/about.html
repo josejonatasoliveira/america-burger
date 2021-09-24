@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block middle %}
+<div id="information-contact" class="container">
+    <ul class="breadcrumb">
+       <li><a href="index9328.html?route=common/home"><i class="fa fa-home"></i></a></li>
+       <li><a href="index2724.html?route=information/contact">Contato</a></li>
+    </ul>
+    <div class="row">
+       <div id="content" class="col-sm-12">
+          <div class="contact-form">
+             <h1 class="page-title">Contato</h1>
+             <div class="contact-form left">
+                <h3>Nossa Localização</h3>
+                <div class="address-detail"><img src="{% static '/burger/image/catalog/logo.png' %}" alt="América Burger" title="Burge - FastFood Store" class="img-thumbnail" /></div>
+                <div class="row">
+                   <div class="col-sm-6">
+                      <div class="address-detail1">
+                         <strong>Endereço: </strong>
+                         <address>
+                            América Burger
+                            <br>
+                            Paraibuna-SP, Brasil
+                         </address>
+                      </div>
+                      <div class="map-btn"><a href="https://maps.google.com/maps?q=Paraibuna-SP%20&amp;hl=en-gb%20&amp;t=m&amp;z=15" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> Visualizar Google Map </a></div>
+                   </div>
+                   <div class="col-sm-6">
+                      <div class="telephone">
+                         <strong>Tel/Whats: </strong>
+                         <address>:(12)99783-6797  </address>
+                      </div>
+                      <div class="time">
+                         <strong>Hr. funcionamento: </strong>
+                         18:30 PM até 23:30 PM (Quinta a Domingo)
+                         <br />
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="contact-form right">
+                <form method="post" id="contact-form" enctype="multipart/form-data" class="form-horizontal">
+                   <fieldset>
+                      <h3>Formulário de Contato</h3>
+                      <div class="form-group required">
+                         <label class="col-sm-3 control-label" for="input-name">Nome</label>
+                         <div class="col-sm-9">
+                            <input type="text" name="name" value="" id="input-name" class="form-control" />
+                         </div>
+                      </div>
+                      <div class="form-group required">
+                         <label class="col-sm-3 control-label" for="input-email">E-mail</label>
+                         <div class="col-sm-9">
+                            <input type="text" name="email" value="" id="input-email" class="form-control" />
+                         </div>
+                      </div>
+                      <div class="form-group required">
+                         <label class="col-sm-3 control-label" for="input-message">Mensagem</label>
+                         <div class="col-sm-9">
+                            <textarea name="message" rows="10" id="input-message" class="form-control"></textarea>
+                         </div>
+                      </div>
+                   </fieldset>
+                   <div class="buttons">
+                      <div class="pull-right">
+                         <input class="btn btn-primary" type="submit" value="Enviar" />
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+          <div class="map" id="google_map" style="width:100%; height: 400px;"></div>
+       </div>
+    </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOgKBG0SbQowaKmm0GqdJPYsuuDlamDxM&amp;callback=init_map" async defer></script>
+<script type = 'text/javascript' >
+   function init_map() {
+      var LatLng = { lat: -23.395231, lng: -45.662321 };
+      var map = new google.maps.Map(document.getElementById('google_map'), {
+         center: LatLng,
+         scrollwheel: false,
+         zoom: 18
+      });
+      var marker = new google.maps.Marker({
+         position: LatLng,
+         map: map
+      });			
+      infowindow = new google.maps.InfoWindow({
+         content: '<strong>América Burger</strong>'
+      });			
+      google.maps.event.addListener(marker, 'click', function() {
+         infowindow.open(map, marker);
+      });            
+      infowindow.open(map, marker);
+   }
+
+   $("#contact-form").on('submit', (e) => {
+      var ip = "";
+
+      e.preventDefault();
+
+      $.getJSON("https://api.ipify.org?format=jsonp&callback=?",(json)=>{
+         ip = json.ip;
+         var data = $("#contact-form").serialize() + `&ip=${ip}`;
+
+         $.ajax({
+            url: "{% url 'save_contact' %}",
+            method: 'POST',
+            data:data,
+            beforeSend: (xhr) => {
+               xhr.setRequestHeader('X-CSRFTOKEN', "{{ csrf_token }}");
+            },
+            complete: (data) => {
+               if(data.status == 200){
+                  document.getElementById("contact-form").reset();
+                  swal({
+                     title: "Mensagem enviada!",
+                     text: "Em breve entraremos em contato",
+                     type: "success",
+                     showConfirmButton: false,
+                     timer: 2000
+                  })
+               }
+            }
+         });
+
+      });
+
+
+   })
+ </script>
+{% endblock middle %}

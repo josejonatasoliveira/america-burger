@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+ {% load static %}
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  <link href="{% static 'burger/dashboard/css/all.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/colors.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/landing.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/linear-icons.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/metisMenu.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/pretty-checkbox.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'burger/dashboard/css/colors/default-custom.css' %}" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/jquery-3.2.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/loader.js' %}"></script>
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/metisMenu.js' %}"></script>
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/mask/jquery.mask.js' %}"></script>
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/mask/jquery.mask.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'burger/dashboard/javascript/mask/mask.js' %}"></script>
+
+<title>AES Tiete</title>
+</head>
+
+{% block body %}
+<body>
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<div class="page">
+  <div class="main-wrap">
+    <div class="main-heading">
+
+      <nav class="top-nav  navbar-collapse collapse" id="top-nav-list">
+          <!-- BEGIN: nav-content -->
+          <ul class="metismenu nav nav-inverse nav-bordered nav-inline nav-hoverable" data-plugin="metismenu">
+              <li>
+                  <a href="{% url 'home' %}">
+                      <span class="nav-icon">
+                          <i class="fas fa-home"></i>
+                      </span>
+                      <span class="nav-title">Home</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="main-wrap">
+    <main>
+        {% block middle %}
+        {% endblock middle %}
+    </main>
+</div>
+
+{% block footer %}
+{% endblock footer %}
+
+</body>
+{% endblock body %}
+
+</html> 
