@@ -18,17 +18,17 @@
 #
 #########################################################################
 
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(r'^permissions/(?P<resource_id>\d+)$',
+    path(r'^permissions/(?P<resource_id>\d+)$',
         views.resource_permissions, name='resource_permissions'),
-    url(r'^bulk-permissions/?$',
+    path(r'^bulk-permissions/?$',
         views.set_bulk_permissions, name='bulk_permissions'),
-    url(r'^request-permissions/?$',
+    path(r'^request-permissions/?$',
         views.request_permissions, name='request_permissions'),
-    url(r'^invalidate-permissions-cache/?$',
+    path(r'^invalidate-permissions-cache/?$',
         views.invalidate_permissions_cache, name='invalidate_permissions_cache'),
 ]

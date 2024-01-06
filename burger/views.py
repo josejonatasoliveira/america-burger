@@ -1,8 +1,8 @@
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group, Permission
-from django.utils.encoding import force_bytes, force_text
-from django.shortcuts import render_to_response
+from django.utils.encoding import force_str
+from django.shortcuts import render
 from django.template import RequestContext
 from burger.people.models import Profile
 from burger.burguer.models import Burguer
@@ -53,7 +53,7 @@ def save_contact(request, template="about.html"):
 
 class ConfirmRegistrationView(View):
   def get(self, request, user_id, token):
-    user_id = force_text(urlsafe_base64_decode(user_id))
+    user_id = force_str(urlsafe_base64_decode(user_id))
     
     user = Profile.objects.get(pk=user_id)
 
@@ -82,11 +82,11 @@ def privacy_policy(request, template="privacy_policy.html"):
   return render(request, template)
 
 def handler404(request, exception, template_name="404.html"):
-    response = render_to_response(template_name)
+    response = render(template_name)
     response.status_code = 404
     return response
 
 def handler500(request, exception, template_name="500.html"):
-    response = render_to_response(template_name)
+    response = render(template_name)
     response.status_code = 500
     return response

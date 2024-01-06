@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r"^profile",
+    path(r"^profile",
         views.create_account, name="create_account"),
-    url(r"^detail/(?P<username>[^/]*)/$",
+    path(r"^detail/(?P<username>[^/]*)/$",
         views.profile_detail, name="profile_detail"),
 ]

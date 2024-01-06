@@ -8,7 +8,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 

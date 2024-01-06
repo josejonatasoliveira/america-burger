@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser, UserManager
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from burger.security.models import PermissionLevelMixin
 from django.contrib.auth.hashers import make_password
 from burger.offer.models import TicketRaffle
@@ -87,7 +87,7 @@ class Profile(AbstractUser):
     company = models.ForeignKey(Company,null=True, on_delete=models.SET_NULL)
     tickets =  models.ManyToManyField(TicketRaffle)
     
-    def get_absolute_url(self):
+    def get_absolute_path(self):
         return reverse("profile_detail", args=[self.username])
     
     def class_name(self, value):

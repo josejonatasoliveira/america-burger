@@ -27,11 +27,11 @@ from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Q
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 from django.db.models import signals
 from django.utils.timezone import now
-from django.contrib.staticfiles.templatetags import staticfiles
+from django.templatetags.static import static
 
 from taggit.managers import TaggableManager
 
@@ -56,7 +56,7 @@ class GroupCategory(models.Model):
     def __str__(self):
         return "{0}".format(self.name)
 
-    def get_absolute_url(self):
+    def get_absolute_path(self):
         return reverse('group_category_detail', args=(self.slug,))
 
 
@@ -214,7 +214,7 @@ class GroupProfile(models.Model):
         else:
             logger.warning("The invited user \"{0}\" is not a member".format(user.username))
 
-    def get_absolute_url(self):
+    def get_absolute_path(self):
         return reverse('group_detail', args=[self.slug, ])
 
     @property
@@ -222,7 +222,7 @@ class GroupProfile(models.Model):
         return self.__class__.__name__
 
     @property
-    def logo_url(self):
+    def logo_path(self):
         _missing_thumbnail_url = staticfiles.static(settings.MISSING_THUMBNAIL)
         try:
             _base_path = os.path.split(self.logo.path)[0]

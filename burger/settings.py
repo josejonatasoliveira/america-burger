@@ -57,7 +57,7 @@ BURGER_APPS = [
 
 INSTALLED_APPS = [
     # 'jet.dashboard',
-    'jet',
+    # 'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +78,7 @@ INSTALLED_APPS = [
 ] + BURGER_APPS
 
 MIDDLEWARE = [
+    "allauth.account.middleware.AccountMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
