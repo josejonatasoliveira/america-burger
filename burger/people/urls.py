@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
     path(r"^profile",
         views.create_account, name="create_account"),
-    path(r"^detail/(?P<username>[^/]*)/$",
+    re_path(r"^detail/(?P<username>[^/]*)/$",
         views.profile_detail, name="profile_detail"),
 ]

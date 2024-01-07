@@ -27,7 +27,7 @@ from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = [
-    # path(r'^jet/', include('jet.urls')),
+    # path('jet/', include('jet.urls')),
     # path(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('',index_view.index_view,name='home'),
     path("account/", include("allauth.urls")),
@@ -64,7 +64,7 @@ urlpatterns = [
     ),
     path('confirm-email/(?P<user_id>[0-9A-Za-z]+)-(?P<token>.+)/$', index_view.ConfirmRegistrationView.as_view(), name='confirm_email'),
 ] + i18n_patterns(
-    path(r'^admin/', admin.site.urls)
+    path('admin/', admin.site.urls)
 )
 
 urlpatterns += staticfiles_urlpatterns()

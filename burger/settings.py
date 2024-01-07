@@ -56,8 +56,6 @@ BURGER_APPS = [
 ]
 
 INSTALLED_APPS = [
-    # 'jet.dashboard',
-    # 'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -96,43 +94,6 @@ CART_SESSION_ID = 'cart'
 
 USE_TZ = True
 TIME_ZONE = 'Europe/Paris'
-
-JET_SIDE_MENU_COMPACT = False
-
-JET_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultIndexDashboard'
-
-JET_THEMES = [
-    {
-        'theme': 'default', # theme folder name
-        'color': '#47bac1', # color of the theme's button in user menu
-        'title': 'Default' # theme title
-    },
-    {
-        'theme': 'green',
-        'color': '#44b78b',
-        'title': 'Green'
-    },
-    {
-        'theme': 'light-green',
-        'color': '#2faa60',
-        'title': 'Light Green'
-    },
-    {
-        'theme': 'light-violet',
-        'color': '#a464c4',
-        'title': 'Light Violet'
-    },
-    {
-        'theme': 'light-blue',
-        'color': '#5EADDE',
-        'title': 'Light Blue'
-    },
-    {
-        'theme': 'light-gray',
-        'color': '#222',
-        'title': 'Light Gray'
-    }
-]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -250,19 +211,8 @@ USE_TZ = True
 STATIC_URL = os.getenv('STATIC_URL', "/static/")
 
 STATIC_ROOT = os.getenv('STATIC_ROOT',
-                        os.path.join(PROJECT_ROOT, "static_root"))
-                        
-_DEFAULT_STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, "static"),
-]
-STATICFILES_DIRS = os.getenv('STATICFILES_DIRS', _DEFAULT_STATICFILES_DIRS)
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
+                        os.path.join(PROJECT_ROOT, "static"))
+
 
 LOGOUT_REDIRECT_URL='/login/'
 LOGIN_REDIRECT_URL='/profile/'
